@@ -14,18 +14,25 @@
 </head>
 <body>
 
+<sec:authorize access="isAuthenticated()">
+    <p>Zalogowany jako: <sec:authentication property="principal.username"/></p>
+
+</sec:authorize><br><br>
+
 <sec:authorize access="hasRole('CLUBMANAGER')">
    <a href="/club">Przejdź do zarządzania klubem</a>
-</sec:authorize>
+</sec:authorize><br>
 
 <sec:authorize access="hasRole('BANDMANAGER')">
    <a href="/band">Przejdź do zarządzania zespołem</a>
 </sec:authorize>
 
-<form action="<c:url value="/logout"/>" method="post">
-    <input class="fa fa-id-badge" type="submit" value="Wyloguj">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
+<sec:authorize access="isAuthenticated()">
+    <form action="<c:url value="/logout"/>" method="post">
+        <input type="submit" value="Wyloguj">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+</sec:authorize>
 
 
 </body>

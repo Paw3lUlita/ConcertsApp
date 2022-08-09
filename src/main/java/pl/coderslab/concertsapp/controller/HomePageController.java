@@ -32,6 +32,8 @@ public class HomePageController {
         return "homepage/register";
     }
 
+
+
     @PostMapping("/register")
     public String saveUser(User user){
         userService.saveUser(user);

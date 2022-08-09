@@ -28,8 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/dashboard").authenticated()
+                .antMatchers("/club").hasRole("CLUBMANAGER")
+                .antMatchers("/band").hasRole("BANDMANAGER")
                 .and().formLogin()
-                .defaultSuccessUrl("/dashboard");
+                .defaultSuccessUrl("/dashboard")
+                .and().logout().logoutSuccessUrl("/")
+                .and().exceptionHandling().accessDeniedPage("/403");
 
     }
 }
