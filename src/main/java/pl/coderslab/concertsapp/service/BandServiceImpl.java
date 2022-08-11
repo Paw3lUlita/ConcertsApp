@@ -19,8 +19,8 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
-    public void updateBand(Long id) {
-        Band band = findBandById(id);
+    public void updateBand(Band band) {
+
         bandRepository.save(band);
     }
 
@@ -42,5 +42,10 @@ public class BandServiceImpl implements BandService {
     @Override
     public List<Band> findAllBands() {
         return bandRepository.findAll();
+    }
+
+    @Override
+    public void deleteBandByid(Long id) {
+        bandRepository.deleteById(id);
     }
 }

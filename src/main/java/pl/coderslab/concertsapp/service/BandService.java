@@ -8,7 +8,7 @@ public interface BandService {
 
     void saveBand(Band band);
 
-    void updateBand(Long id);
+    void updateBand(Band band);
 
     Band findBandByName(String bandName);
 
@@ -17,5 +17,7 @@ public interface BandService {
     List<Band> findBandsForUser(Long userId);
 
     List<Band> findAllBands();
+
+    void deleteBandByid(Long id);
 
 }

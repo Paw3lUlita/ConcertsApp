@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pawel
@@ -15,5 +16,7 @@
 
 <a href="/register">Zarejestruj się</a><br>
 <a href="/login">Zaloguj się</a>
+
+
 </body>
 </html>

@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.concertsapp.entity.Band;
+import pl.coderslab.concertsapp.entity.Event;
 import pl.coderslab.concertsapp.entity.Role;
 import pl.coderslab.concertsapp.entity.User;
+import pl.coderslab.concertsapp.repository.EventRepository;
 import pl.coderslab.concertsapp.service.RoleService;
 import pl.coderslab.concertsapp.service.UserService;
 
@@ -20,6 +23,7 @@ public class HomePageController {
 
     private final RoleService roleService;
     private final UserService userService;
+    private final EventRepository eventRepository;
 
 
 
@@ -29,8 +33,11 @@ public class HomePageController {
     public String showRegistrationForm(Model model){
         User user = new User();
         model.addAttribute(user);
+
         return "homepage/register";
     }
+
+
 
 
 

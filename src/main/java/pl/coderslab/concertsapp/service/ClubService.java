@@ -19,4 +19,6 @@ public interface ClubService {
 
     List<Club> findAllClubs();
 
+    void deleteClubById(Long id);
+
 }

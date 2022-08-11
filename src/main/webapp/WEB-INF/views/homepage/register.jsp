@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pawel
@@ -20,5 +21,6 @@
                      items="${roles}" itemLabel="description" itemValue="id"/><br>
     <input type="submit" value="Zarejestruj">
 </form:form>
+
 </body>
 </html>
