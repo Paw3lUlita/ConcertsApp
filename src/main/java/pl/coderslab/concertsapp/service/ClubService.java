@@ -9,7 +9,7 @@ public interface ClubService {
 
     void saveClub(Club club);
 
-    void updateClub(Long id);
+    void updateClub(Club club);
 
     Club findClubByName(String clubName);
 

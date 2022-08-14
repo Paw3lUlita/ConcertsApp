@@ -19,8 +19,8 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateClub(Long id) {
-        Club club = findClubById(id);
+    public void updateClub(Club club) {
+
         clubRepository.save(club);
 
     }

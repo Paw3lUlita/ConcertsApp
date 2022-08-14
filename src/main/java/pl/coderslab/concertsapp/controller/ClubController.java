@@ -2,9 +2,8 @@ package pl.coderslab.concertsapp.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.User;
 import pl.coderslab.concertsapp.service.ClubService;
@@ -27,6 +26,47 @@ public class ClubController {
         return "club/clubList";
     }
 
+    @GetMapping("/add")
+    public String showAddForm(Model model){
+        Club club = new Club();
+        model.addAttribute(club);
+        return "club/add";
+    }
+
+    @PostMapping("/add")
+    public String addClub(Club club, Principal principal){
+        User user = userService.findByUserName(principal.getName());
+        club.setUser(user);
+        clubService.saveClub(club);
+        return "redirect:/club";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable long id, Model model){
+        Club club = clubService.findClubById(id);
+        model.addAttribute("club", club);
+        return "club/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editClub(Club club){
+        clubService.updateClub(club);
+        return "redirect:/club";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String showDeleteAlert(@PathVariable long id, Model model){
+        Club club = clubService.findClubById(id);
+        model.addAttribute("club", club);
+        return "club/deleteAlert";
+    }
+
+    @GetMapping("/delete")
+    public String deleteClub(@RequestParam long id, Model model){
+        clubService.deleteClubById(id);
+
+        return "redirect:/club";
+    }
 
     @ModelAttribute("userClubs")
     public List<Club> getUserClubs(Principal principal){
