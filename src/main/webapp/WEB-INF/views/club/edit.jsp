@@ -13,8 +13,8 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="club">
-    Podaj miasto: <form:input path="city" />
-    Podaj nazwę:  <form:input path="name"/>
+    Podaj miasto: <form:input path="city" /><br>
+    Podaj nazwę:  <form:input path="name"/><br>
     <form:hidden path="id"/>
     <form:hidden path="user.id"/>
     <input type="submit" value="Edytuj klub">

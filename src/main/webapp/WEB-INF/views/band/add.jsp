@@ -12,10 +12,10 @@
     <title>Concerts App</title>
 </head>
 <body>
-<form:form method="post" modelAttribute="club">
-    Podaj miasto: <form:input path="city" /><br>
-    Podaj nazwę:  <form:input path="name"/><br>
-    <input type="submit" value="Dodaj klub">
+<form:form method="post" modelAttribute="band">
+    Podaj nazwę: <form:input path="name" /><br>
+    Podaj bio:  <form:input path="bio"/><br>
+    <input type="submit" value="Dodaj zespół">
 </form:form>
 </body>
 </html>
