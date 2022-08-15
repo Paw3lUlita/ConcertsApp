@@ -13,7 +13,7 @@
 </head>
 <body>
 
-Czy na pewno chcesz usunąć zespół ${band.name}? <br>
-<a href="/band/delete?id=${band.id}">Tak</a>    <a href="/band">Nie</a>
+Czy na pewno chcesz usunąć wydarzenie ${event.name}? <br>
+<a href="/event/delete?id=${event.id}">Tak</a>    <a href="/event/${clubId}">Nie</a>
 </body>
 </html>

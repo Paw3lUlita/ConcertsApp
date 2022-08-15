@@ -15,7 +15,9 @@
 Twoje kluby:<br>
 
 <c:forEach var="club" items="${userClubs}">
-  ${club.city}  ${club.name}  <a href="/club/edit/${club.id}">Edytuj</a>
+  ${club.city}  ${club.name}
+    <a href="/event/${club.id}">Pokaż wydarzenia</a>
+    <a href="/club/edit/${club.id}">Edytuj</a>
     <a href="/club/delete/${club.id}">Usuń</a> <br>
 </c:forEach>
 ...............
