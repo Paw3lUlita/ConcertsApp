@@ -1,8 +1,10 @@
 package pl.coderslab.concertsapp.entity;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,7 +21,8 @@ public class Event {
 
     private String description;
 
-    private LocalDateTime date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "club_id")
