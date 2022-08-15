@@ -2,22 +2,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: pawel
-  Date: 12.08.2022
-  Time: 15:58
+  Date: 15.08.2022
+  Time: 13:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Concerts App</title>
+    <title>Concerts app</title>
 </head>
 <body>
 <form:form method="post" modelAttribute="event">
-    Podaj nazwę: <form:input path="name" /><br>
-    Podaj opis:  <form:input path="description"/><br>
-    Podaj datę: <input type="date" name="date"/>
-    <form:hidden path="id"/>
-    <input type="submit" value="Dodaj wydarzenie">
+    Edytuj nazwę: <form:input path="name" /><br>
+    Edytuj opis:  <form:input path="description"/><br>
+    Edytuj datę: <input type="date" name="date" value="${event.date}"/>
+    <form:hidden path="club.id"/>
+    <input type="submit" value="Edytuj wydarzenie">
 </form:form>
 </body>
 </html>

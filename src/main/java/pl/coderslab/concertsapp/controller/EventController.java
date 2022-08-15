@@ -50,4 +50,34 @@ public class EventController {
         return "redirect:/event/"+clubId;
     }
 
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable long id, Model model){
+        Event event = eventService.findEventById(id);
+        model.addAttribute("event", event);
+        return "eventForClub/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editBand(Event event){
+        eventService.saveEvent(event);
+        return "redirect:/event/"+event.getClub().getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String showDeleteAlert(@PathVariable long id, Model model){
+        Event event = eventService.findEventById(id);
+        model.addAttribute("event", event);
+        model.addAttribute("clubId", event.getClub().getId());
+        return "eventForClub/deleteAlert";
+    }
+
+    @GetMapping("/delete")
+    public String deleteClub(@RequestParam long id){
+
+        long clubId = eventService.findEventById(id).getClub().getId();
+        eventService.deleteEventById(id);
+
+        return "redirect:/event/"+clubId;
+    }
+
 }
