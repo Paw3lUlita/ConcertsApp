@@ -18,12 +18,15 @@ Twoje wydarzenia:<br>
    Nazwa: ${event.name} <br>
     Opis:  ${event.description}  <br>
     Data: ${event.date} <br>
-    Zespoły: <c:forEach var="band" items="${event.bands}">
-    ${band.name} <br>
+    Zespoły: <br>
+    <c:forEach var="band" items="${event.bands}">
+    ${band.name} <a href="/event/banddetails/${band.id}">Szczegóły</a>
+        <a href="/event/${event.id}/bandremove/${band.id}">Usuń z wydarzenia</a> <br>
 </c:forEach><br>
-    <a href="/event/edit/${event.id}">Edytuj Wydarzenie</a>
+    <a href="/event/edit/${event.id}">Edytuj </a><br>
     <a href="/event/delete/${event.id}">Usuń Wydarzenie</a> <br>
-</c:forEach>
+
+</c:forEach><br>
 ...............
 <a href="/event/${clubId}/add">Dodaj nowe wydarzenie</a>
 

@@ -8,6 +8,7 @@ import pl.coderslab.concertsapp.entity.Band;
 import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.Event;
 import pl.coderslab.concertsapp.entity.User;
+import pl.coderslab.concertsapp.service.BandService;
 import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.EventService;
 
@@ -15,6 +16,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,7 @@ public class EventController {
 
     private final EventService eventService;
     private final ClubService clubService;
+    private final BandService bandService;
 
     @GetMapping("/{clubId}")
     public String showEventList(@PathVariable long clubId, Model model){
@@ -53,12 +56,21 @@ public class EventController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable long id, Model model){
         Event event = eventService.findEventById(id);
+        List<Band> bandsToAdd = new ArrayList<>();
+        for (Band b : bandService.findAllBands()){
+            for(Band eventBand: event.getBands()){
+                if(b != eventBand){
+                    bandsToAdd.add(b);
+                }
+            }
+        }
+        model.addAttribute("bandsToAdd", bandsToAdd);
         model.addAttribute("event", event);
         return "eventForClub/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String editBand(Event event){
+    public String editEvent(Event event){
         eventService.saveEvent(event);
         return "redirect:/event/"+event.getClub().getId();
     }
@@ -72,12 +84,27 @@ public class EventController {
     }
 
     @GetMapping("/delete")
-    public String deleteClub(@RequestParam long id){
+    public String deleteEvent(@RequestParam long id){
 
         long clubId = eventService.findEventById(id).getClub().getId();
         eventService.deleteEventById(id);
 
         return "redirect:/event/"+clubId;
+    }
+
+    @GetMapping("/{eventId}/bandremove/{bandId}")
+    public String removeBandFromEvent(@PathVariable long eventId, @PathVariable long bandId){
+        Event event = eventService.findEventById(eventId);
+        Band band = bandService.findBandById(bandId);
+        event.getBands().remove(band);
+        eventService.saveEvent(event);
+        return "redirect:/event/"+event.getClub().getId();
+    }
+
+    @ModelAttribute("allBands")
+    public List<Band> getAllBands(){
+        return bandService.findAllBands();
+
     }
 
 }
