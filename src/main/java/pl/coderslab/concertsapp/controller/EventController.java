@@ -70,7 +70,7 @@ public class EventController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editBand(Event event){
+    public String editEvent(Event event){
         eventService.saveEvent(event);
         return "redirect:/event/"+event.getClub().getId();
     }
@@ -84,12 +84,21 @@ public class EventController {
     }
 
     @GetMapping("/delete")
-    public String deleteClub(@RequestParam long id){
+    public String deleteEvent(@RequestParam long id){
 
         long clubId = eventService.findEventById(id).getClub().getId();
         eventService.deleteEventById(id);
 
         return "redirect:/event/"+clubId;
+    }
+
+    @GetMapping("/{eventId}/bandremove/{bandId}")
+    public String removeBandFromEvent(@PathVariable long eventId, @PathVariable long bandId){
+        Event event = eventService.findEventById(eventId);
+        Band band = bandService.findBandById(bandId);
+        event.getBands().remove(band);
+        eventService.saveEvent(event);
+        return "redirect:/event/"+event.getClub().getId();
     }
 
     @ModelAttribute("allBands")
