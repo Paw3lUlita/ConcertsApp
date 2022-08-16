@@ -21,9 +21,10 @@ Twoje wydarzenia:<br>
     Zespoły: <c:forEach var="band" items="${event.bands}">
     ${band.name} <br>
 </c:forEach><br>
-    <a href="/event/edit/${event.id}">Edytuj Wydarzenie</a>
+    <a href="/event/edit/${event.id}">Edytuj </a><br>
     <a href="/event/delete/${event.id}">Usuń Wydarzenie</a> <br>
-</c:forEach>
+
+</c:forEach><br>
 ...............
 <a href="/event/${clubId}/add">Dodaj nowe wydarzenie</a>
 

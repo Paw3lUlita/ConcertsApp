@@ -8,6 +8,7 @@ import pl.coderslab.concertsapp.entity.Band;
 import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.Event;
 import pl.coderslab.concertsapp.entity.User;
+import pl.coderslab.concertsapp.service.BandService;
 import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.EventService;
 
@@ -15,6 +16,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,7 @@ public class EventController {
 
     private final EventService eventService;
     private final ClubService clubService;
+    private final BandService bandService;
 
     @GetMapping("/{clubId}")
     public String showEventList(@PathVariable long clubId, Model model){
@@ -53,6 +56,15 @@ public class EventController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable long id, Model model){
         Event event = eventService.findEventById(id);
+        List<Band> bandsToAdd = new ArrayList<>();
+        for (Band b : bandService.findAllBands()){
+            for(Band eventBand: event.getBands()){
+                if(b != eventBand){
+                    bandsToAdd.add(b);
+                }
+            }
+        }
+        model.addAttribute("bandsToAdd", bandsToAdd);
         model.addAttribute("event", event);
         return "eventForClub/edit";
     }
@@ -78,6 +90,12 @@ public class EventController {
         eventService.deleteEventById(id);
 
         return "redirect:/event/"+clubId;
+    }
+
+    @ModelAttribute("allBands")
+    public List<Band> getAllBands(){
+        return bandService.findAllBands();
+
     }
 
 }

@@ -16,7 +16,9 @@
     Podaj nazwę: <form:input path="name" /><br>
     Podaj opis:  <form:input path="description"/><br>
     Podaj datę: <input type="date" name="date"/>
-    <form:hidden path="id"/>
+    Dodaj zespoły: <br>
+    <form:checkboxes path="bands" items="${allBands}" itemLabel="name" itemValue="id" />
+    <form:hidden path="club.id"/>
     <input type="submit" value="Dodaj wydarzenie">
 </form:form>
 </body>
