@@ -28,7 +28,8 @@ Twoje wydarzenia:<br>
 
 </c:forEach><br>
 ...............
-<a href="/band/allevents">Szukaj wydarzeń</a>
+<a href="/band/allevents/cities">Szukaj wydarzeń wg Miast</a>
+<a href="/band/allevents/clubs">Szukaj wydarzeń wg Klubów</a>
 
 </body>
 </html>
