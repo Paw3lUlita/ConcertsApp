@@ -110,6 +110,21 @@ import java.util.List;
         return "band/cityEventsList";
     }
 
+    @GetMapping("/allevents/clubs")
+    public String showAllClubs(Model model){
+        model.addAttribute("clubs", clubService.findAllClubs());
+        return "band/clubSearch";
+    }
+
+    @GetMapping("/clubevent/{clubId}")
+    public String showAlleventsInClub(@PathVariable long clubId, Model model){
+        Club club = clubService.findClubById(clubId);
+        model.addAttribute("club", club);
+        model.addAttribute("clubEvents", eventService.findEventsForClub(club));
+        return "band/clubEventsList";
+    }
+
+
     @ModelAttribute("userBands")
     public List<Band> getUserBands(Principal principal){
         User user = userService.findByUserName(principal.getName());
