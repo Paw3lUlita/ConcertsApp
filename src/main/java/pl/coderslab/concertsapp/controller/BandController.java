@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.concertsapp.entity.Band;
 import pl.coderslab.concertsapp.entity.Club;
+import pl.coderslab.concertsapp.entity.Event;
 import pl.coderslab.concertsapp.entity.User;
 import pl.coderslab.concertsapp.service.BandService;
+import pl.coderslab.concertsapp.service.EventService;
 import pl.coderslab.concertsapp.service.UserService;
 
 import java.security.Principal;
@@ -22,6 +24,7 @@ import java.util.List;
 
     private final BandService bandService;
     private final UserService userService;
+    private final EventService eventService;
 
 
     @GetMapping("")
@@ -71,6 +74,27 @@ import java.util.List;
 
         return "redirect:/band";
     }
+
+    @GetMapping("/events/{bandId}")
+    public String showBandDashboard(@PathVariable long bandId, Model model){
+
+        List<Event> eventsForBand = eventService.findEventsForBand(bandId);
+        model.addAttribute("bandId", bandId);
+        model.addAttribute("eventsForBand", eventsForBand);
+        return "band/eventList";
+
+    }
+
+    @GetMapping("/{bandId}/cancel/{eventId}")
+    public String abortEvent(@PathVariable long bandId, @PathVariable long eventId){
+        Event event = eventService.findEventById(eventId);
+        Band band = bandService.findBandById(bandId);
+        event.getBands().remove(band);
+        eventService.saveEvent(event);
+        return "redirect:/band/events/"+bandId;
+    }
+
+
 
     @ModelAttribute("userBands")
     public List<Band> getUserBands(Principal principal){

@@ -16,7 +16,8 @@ Twoje zespoły:<br>
 
 <c:forEach var="band" items="${userBands}">
    Nazwa: ${band.name} <br>
-    Bio:  ${band.bio}  <br> <a href="/band/edit/${band.id}">Edytuj</a>
+    <a href="/band/events/${band.id}">Zarządzaj wydarzeniami</a> <br>
+    <a href="/band/edit/${band.id}">Edytuj</a>
     <a href="/band/delete/${band.id}">Usuń</a> <br>
 </c:forEach>
 ...............
