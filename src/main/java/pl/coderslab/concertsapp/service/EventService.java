@@ -23,4 +23,6 @@ public interface EventService {
 
     void deleteEventById(Long id);
 
+    List<Event> findEventsByClubCity(String city);
+
 }

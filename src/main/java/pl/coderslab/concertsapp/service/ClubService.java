@@ -21,4 +21,6 @@ public interface ClubService {
 
     void deleteClubById(Long id);
 
+    List<String> getAllCities();
+
 }

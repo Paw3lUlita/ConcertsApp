@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pawel
@@ -11,6 +12,12 @@
     <title>Concerts Manager</title>
 </head>
 <body>
+Wybierz miasto:
+<br>
+<br>
+<c:forEach items="${cities}" var="city">
+    <a href="/band/cityevent/${city}">${city}</a><br>
+</c:forEach>
 
 </body>
 </html>

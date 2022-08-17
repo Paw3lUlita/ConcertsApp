@@ -12,4 +12,6 @@ public interface BandRepository extends JpaRepository<Band, Long> {
     Band findByName(String bandName);
 
     List<Band> findBandsByUserId(Long userId);
+
+
 }
