@@ -8,6 +8,7 @@ import pl.coderslab.concertsapp.entity.Band;
 import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.Event;
 import pl.coderslab.concertsapp.entity.User;
+import pl.coderslab.concertsapp.service.AskService;
 import pl.coderslab.concertsapp.service.BandService;
 import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.EventService;
@@ -27,11 +28,13 @@ public class EventController {
     private final EventService eventService;
     private final ClubService clubService;
     private final BandService bandService;
+    private final AskService askService;
 
     @GetMapping("/{clubId}")
     public String showEventList(@PathVariable long clubId, Model model){
         Club club = clubService.findClubById(clubId);
         List<Event> clubEvents = eventService.findEventsForClub(club);
+        model.addAttribute("asksForClub", askService.findAsksByClub(clubId));
         model.addAttribute("clubId", clubId);
         model.addAttribute("clubEvents", clubEvents);
         return "eventForClub/eventList";
@@ -100,6 +103,20 @@ public class EventController {
         eventService.saveEvent(event);
         return "redirect:/event/"+event.getClub().getId();
     }
+
+
+    @GetMapping("/{eventId}/{bandId}/{askId}")
+    public String addBandToEvent(@PathVariable long eventId,
+                                 @PathVariable long bandId,
+                                 @PathVariable long askId){
+        Event event = eventService.findEventById(eventId);
+        Band band = bandService.findBandById(bandId);
+        event.getBands().add(band);
+        eventService.saveEvent(event);
+        askService.deleteAskById(askId);
+        return "redirect:/event/"+event.getClub().getId();
+    }
+
 
     @ModelAttribute("allBands")
     public List<Band> getAllBands(){

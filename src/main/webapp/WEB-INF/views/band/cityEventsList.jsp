@@ -25,7 +25,7 @@ Wydarzenia w mieście ${city}:<br>
 
     </c:forEach><br>
 
-    <a href="/bandjoin/${event.id}">Dołącz do wydarzenia</a> <br>
+    <a href="/band/bandjoin/${event.id}">Poproś o dołączenie</a> <br>
 
 </c:forEach><br>
 </body>

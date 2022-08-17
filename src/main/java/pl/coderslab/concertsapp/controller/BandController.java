@@ -5,15 +5,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.concertsapp.entity.Band;
-import pl.coderslab.concertsapp.entity.Club;
-import pl.coderslab.concertsapp.entity.Event;
-import pl.coderslab.concertsapp.entity.User;
-import pl.coderslab.concertsapp.service.BandService;
-import pl.coderslab.concertsapp.service.ClubService;
-import pl.coderslab.concertsapp.service.EventService;
-import pl.coderslab.concertsapp.service.UserService;
+import pl.coderslab.concertsapp.entity.*;
+import pl.coderslab.concertsapp.service.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
 
@@ -27,6 +23,7 @@ import java.util.List;
     private final UserService userService;
     private final EventService eventService;
     private final ClubService clubService;
+    private final AskService askService;
 
 
     @GetMapping("")
@@ -78,8 +75,11 @@ import java.util.List;
     }
 
     @GetMapping("/events/{bandId}")
-    public String showBandDashboard(@PathVariable long bandId, Model model){
+    public String showBandDashboard(@PathVariable long bandId, Model model, HttpServletResponse response){
 
+        Cookie cookie = new Cookie("bandId", String.valueOf(bandId));
+        cookie.setPath("/");
+        response.addCookie(cookie);
         List<Event> eventsForBand = eventService.findEventsForBand(bandId);
         model.addAttribute("bandId", bandId);
         model.addAttribute("eventsForBand", eventsForBand);
@@ -124,6 +124,23 @@ import java.util.List;
         return "band/clubEventsList";
     }
 
+    @GetMapping("/bandjoin/{eventId}")
+    public String showAskForm(@CookieValue String bandId,
+                              @PathVariable long eventId, Model model){
+        Ask ask = new Ask();
+        Band band = bandService.findBandById(Long.parseLong(bandId));
+        Event event = eventService.findEventById(eventId);
+        ask.setBand(band);
+        ask.setEvent(event);
+        model.addAttribute("ask", ask);
+        return "band/askAdd";
+    }
+
+    @PostMapping("/bandjoin/{eventId}")
+    public String sendAsk(Ask ask){
+        askService.saveAsk(ask);
+        return "redirect:band/events/"+ask.getBand().getId();
+    }
 
     @ModelAttribute("userBands")
     public List<Band> getUserBands(Principal principal){

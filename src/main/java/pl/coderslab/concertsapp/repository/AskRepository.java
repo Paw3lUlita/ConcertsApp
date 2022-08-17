@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 public interface AskRepository extends JpaRepository<Ask, Long> {
 
-    @Query("SELECT a FROM Ask a WHERE a.event.club.id = :clubId")
+    @Query(value = "SELECT a.id, a.message, a.band_id, a.event_id from ask a " +
+            "JOIN event e on e.id = a.event_id " +
+            "WHERE club_id=2", nativeQuery = true)
     List<Ask> findAllByClub(Long clubId);
 
 }
