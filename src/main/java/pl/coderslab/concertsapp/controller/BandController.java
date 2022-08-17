@@ -10,6 +10,7 @@ import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.Event;
 import pl.coderslab.concertsapp.entity.User;
 import pl.coderslab.concertsapp.service.BandService;
+import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.EventService;
 import pl.coderslab.concertsapp.service.UserService;
 
@@ -25,6 +26,7 @@ import java.util.List;
     private final BandService bandService;
     private final UserService userService;
     private final EventService eventService;
+    private final ClubService clubService;
 
 
     @GetMapping("")
@@ -95,10 +97,24 @@ import java.util.List;
     }
 
 
+    @GetMapping("/allevents/cities")
+    public String showAllCities(Model model){
+        model.addAttribute("cities", clubService.getAllCities());
+        return "band/citySearch";
+    }
+
+    @GetMapping("/cityevent/{city}")
+    public String showAllEventsInCity(@PathVariable String city, Model model){
+        model.addAttribute("city", city);
+        model.addAttribute("cityEvents", eventService.findEventsByClubCity(city));
+        return "band/cityEventsList";
+    }
 
     @ModelAttribute("userBands")
     public List<Band> getUserBands(Principal principal){
         User user = userService.findByUserName(principal.getName());
         return bandService.findBandsForUser(user.getId());
     }
+
+
 }
