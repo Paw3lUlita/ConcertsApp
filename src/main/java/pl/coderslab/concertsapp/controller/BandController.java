@@ -139,7 +139,7 @@ import java.util.List;
     @PostMapping("/bandjoin/{eventId}")
     public String sendAsk(Ask ask){
         askService.saveAsk(ask);
-        return "redirect:band/events/"+ask.getBand().getId();
+        return "redirect:/band/events/"+ask.getBand().getId();
     }
 
     @ModelAttribute("userBands")
