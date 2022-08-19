@@ -117,6 +117,9 @@ public class EventController {
         return "redirect:/event/"+event.getClub().getId();
     }
 
+    //@GetMapping("/event/rejectband/{askId}")
+
+
 
     @ModelAttribute("allBands")
     public List<Band> getAllBands(){
