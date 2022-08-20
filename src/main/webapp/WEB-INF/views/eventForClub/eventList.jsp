@@ -45,14 +45,7 @@
         ...............
         <a href="/event/${clubId}/add">Dodaj nowe wydarzenie</a> <br>
         <br>
-        Prośby o dołączenie do wydarzenia:<br>
 
-        <c:forEach var="ask" items="${asksForClub}">
-            Zespół: ${ask.band.name}<br>
-            Wiadomość: ${ask.message}<br>
-            <a href="/event/${ask.event.id}/${ask.band.id}/${ask.id}">Dodaj do eventu</a>
-            <a href="/event/rejectband/${ask.id}">Odrzuć prośbę</a>
-        </c:forEach>
     </div>
 </div>
 

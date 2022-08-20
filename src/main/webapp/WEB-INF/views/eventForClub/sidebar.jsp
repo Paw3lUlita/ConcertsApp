@@ -13,8 +13,8 @@
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/add">Dodaj klub</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/${cookie.clubId.value}/add">Dodaj wydarzenie</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/${cookie.clubId.value}">Lista Wydarzeń</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Wiadomości</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Strona główna</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/messages/${cookie.clubId.value}">Wiadomości</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard">Strona główna</a>
 
   </div>
 </div>

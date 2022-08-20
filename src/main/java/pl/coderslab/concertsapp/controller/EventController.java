@@ -34,7 +34,7 @@ public class EventController {
     public String showEventList(@PathVariable long clubId, Model model){
         Club club = clubService.findClubById(clubId);
         List<Event> clubEvents = eventService.findEventsForClub(club);
-        model.addAttribute("asksForClub", askService.findAsksByClub(clubId));
+
         model.addAttribute("clubId", clubId);
         model.addAttribute("clubEvents", clubEvents);
         return "eventForClub/eventList";

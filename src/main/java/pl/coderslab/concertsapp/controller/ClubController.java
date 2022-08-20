@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.User;
+import pl.coderslab.concertsapp.service.AskService;
 import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.UserService;
 
@@ -21,7 +22,7 @@ public class ClubController {
 
     private final ClubService clubService;
     private final UserService userService;
-
+    private final AskService askService;
 
     @GetMapping("")
     public String showUserClubs(){
@@ -34,6 +35,12 @@ public class ClubController {
         cookie.setPath("/");
         response.addCookie(cookie);
         return "redirect:/event/"+clubId;
+    }
+
+    @GetMapping("/messages/{clubId}")
+    public String getMessages(@PathVariable long clubId, Model model){
+        model.addAttribute("asksForClub", askService.findAsksByClub(clubId));
+        return "club/messages";
     }
 
     @GetMapping("/add")

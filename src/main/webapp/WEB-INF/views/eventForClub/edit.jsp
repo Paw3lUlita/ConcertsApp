@@ -9,9 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Concerts app</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Concert Manager</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+<div class="d-flex" id="wrapper">
+    <jsp:include page="sidebar.jsp"></jsp:include>
 <form:form method="post" modelAttribute="event">
     Edytuj nazwę: <form:input path="name" /><br>
     Edytuj opis:  <form:input path="description"/><br>
@@ -21,7 +31,8 @@
     <form:checkboxes path="bands" items="${bandsToAdd}" itemLabel="name" itemValue="id" />
     <form:hidden path="id"/>
     <form:hidden path="club.id"/>
-    <input type="submit" value="Edytuj wydarzenie">
+    <input class="btn btn-primary" type="submit" value="Edytuj wydarzenie">
 </form:form>
+</div>
 </body>
 </html>
