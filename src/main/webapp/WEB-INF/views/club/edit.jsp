@@ -20,6 +20,8 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+<div class="d-flex" id="wrapper">
+<jsp:include page="sidebar.jsp"></jsp:include>
 <form:form method="post" modelAttribute="club">
 <div class="form-group">
     Podaj miasto: <form:input path="city" /><br>
@@ -28,6 +30,8 @@
     <form:hidden path="user.id"/>
     <input class="btn btn-primary" type="submit" value="Edytuj klub">
 </div>
+
 </form:form>
+</div>
 </body>
 </html>

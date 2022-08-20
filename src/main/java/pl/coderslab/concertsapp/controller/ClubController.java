@@ -9,6 +9,8 @@ import pl.coderslab.concertsapp.entity.User;
 import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.UserService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
 
@@ -24,6 +26,14 @@ public class ClubController {
     @GetMapping("")
     public String showUserClubs(){
         return "club/clubList";
+    }
+
+    @GetMapping("/chooseclub/{clubId}")
+    public String chooseClub(@PathVariable long clubId, HttpServletResponse response){
+        Cookie cookie = new Cookie("clubId", String.valueOf(clubId));
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        return "redirect:/event/"+clubId;
     }
 
     @GetMapping("/add")

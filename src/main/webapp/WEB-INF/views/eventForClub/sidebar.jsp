@@ -11,8 +11,8 @@
   <div class="list-group list-group-flush">
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club">Przełącz klub</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/add">Dodaj klub</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dodaj wydarzenie</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Lista Wydarzeń</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/${cookie.clubId.value}/add">Dodaj wydarzenie</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/${cookie.clubId.value}">Lista Wydarzeń</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Wiadomości</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Strona główna</a>
 
