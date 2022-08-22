@@ -4,6 +4,9 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,11 +20,15 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty(message = "Nazwa klubu nie może być pusta!")
+    @Size(min=10, message = "Nazwa klubu musi mieć co najmniej dziesięc znaków!")
     private String name;
 
+    @NotEmpty(message = "Opis nie może być pusty!")
     private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Future(message = "Data musi być datą z przyszłości!")
     private LocalDate date;
 
     @ManyToOne
@@ -31,5 +38,6 @@ public class Event {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "event_band", joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "band_id"))
+    @Size(max=5, message = "W wydarzeniu nie może uczestniczyć więcej niż 5 zespołów!")
     private List<Band> bands;
 }

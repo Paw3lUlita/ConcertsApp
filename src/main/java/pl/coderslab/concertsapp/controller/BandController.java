@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.concertsapp.entity.*;
 import pl.coderslab.concertsapp.service.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -56,7 +58,12 @@ import java.util.List;
     }
 
     @PostMapping("/add")
-    public String addBand(Band band, Principal principal){
+    public String addBand(@Valid Band band, BindingResult result, Principal principal){
+
+        if(result.hasErrors()){
+            return "band/add";
+        }
+
         User user = userService.findByUserName(principal.getName());
         band.setUser(user);
         bandService.saveBand(band);
@@ -72,7 +79,10 @@ import java.util.List;
     }
 
     @PostMapping("/edit/{id}")
-    public String editBand(Band band){
+    public String editBand(@Valid Band band, BindingResult result){
+        if(result.hasErrors()){
+            return "band/edit";
+        }
         bandService.saveBand(band);
         return "redirect:/band";
     }
@@ -158,7 +168,12 @@ import java.util.List;
     }
 
     @PostMapping("/bandjoin/{eventId}")
-    public String sendAsk(Ask ask){
+    public String sendAsk(@PathVariable long eventId, @Valid Ask ask, BindingResult result){
+
+        if(result.hasErrors()){
+            return "band/askAdd";
+        }
+
         askService.saveAsk(ask);
         return "redirect:/band/events/"+ask.getBand().getId();
     }

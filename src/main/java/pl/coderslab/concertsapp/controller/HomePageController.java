@@ -13,6 +13,7 @@ import pl.coderslab.concertsapp.repository.EventRepository;
 import pl.coderslab.concertsapp.service.RoleService;
 import pl.coderslab.concertsapp.service.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -42,7 +43,10 @@ public class HomePageController {
 
 
     @PostMapping("/register")
-    public String saveUser(User user){
+    public String saveUser(@Valid User user, BindingResult result){
+        if (result.hasErrors()){
+            return "homepage/register";
+        }
         userService.saveUser(user);
         return "redirect:/login";
     }

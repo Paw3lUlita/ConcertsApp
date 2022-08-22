@@ -25,7 +25,7 @@
 <form:form method="post" modelAttribute="band">
         <div class="form-group">
     Podaj nazwę: <form:input path="name" /><br>
-    Podaj bio:  <form:input path="bio"/><br>
+    Podaj bio:  <form:input path="bio"/><br><form:errors path="*" cssClass="alert-danger" element="div"/>
     <input class="btn btn-primary" type="submit" value="Dodaj zespół">
         </div>
 </form:form>

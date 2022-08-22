@@ -28,7 +28,7 @@
     Podaj datę: <input type="date" name="date"/>
     Dodaj zespoły: <br>
     <form:checkboxes path="bands" items="${allBands}" itemLabel="name" itemValue="id" />
-    <form:hidden path="club.id"/>
+    <form:hidden path="club.id"/><form:errors path="*" cssClass="alert-danger" element="div"/>
     <input type="submit" value="Dodaj wydarzenie">
 </form:form>
 </div>

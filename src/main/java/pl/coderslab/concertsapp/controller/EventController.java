@@ -3,6 +3,7 @@ package pl.coderslab.concertsapp.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.concertsapp.entity.Band;
 import pl.coderslab.concertsapp.entity.Club;
@@ -13,6 +14,7 @@ import pl.coderslab.concertsapp.service.BandService;
 import pl.coderslab.concertsapp.service.ClubService;
 import pl.coderslab.concertsapp.service.EventService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -52,7 +54,12 @@ public class EventController {
     }
 
     @PostMapping("/{clubId}/add")
-    public String addEvent(@PathVariable long clubId, @RequestParam(name = "date") String date, Event event){
+    public String addEvent(@PathVariable long clubId, @RequestParam(name = "date") String date, @Valid Event event, BindingResult result){
+
+        if(result.hasErrors()){
+            return "eventForClub/add";
+        }
+
         event.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         eventService.saveEvent(event);
         return "redirect:/event/"+clubId;
@@ -70,14 +77,18 @@ public class EventController {
                 }
             }
         }*/
-        model.addAttribute("bandsToAdd", bandService.findAllBands());
+
         model.addAttribute("event", event);
         return "eventForClub/edit";
 
     }
 
     @PostMapping("/edit/{id}")
-    public String editEvent(Event event){
+    public String editEvent(@Valid Event event, BindingResult result){
+        if(result.hasErrors()){
+            return "eventForClub/edit";
+        }
+
         eventService.saveEvent(event);
         return "redirect:/event/"+event.getClub().getId();
     }
