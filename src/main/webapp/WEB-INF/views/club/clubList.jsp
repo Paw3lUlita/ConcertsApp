@@ -43,7 +43,7 @@
           <tr>
              <td> ${club.city} </td>
               <td> ${club.name} </td>
-              <td> <a href="/club/chooseclub/${club.id}">Pokaż wydarzenia</a> </td>
+              <td> <a href="/club/chooseclub/${club.id}">Wybierz klub</a> </td>
        <td> <a href="/club/edit/${club.id}">Edytuj</a></td>
               <td>  <a href="/club/delete/${club.id}">Usuń</a> </td>
           </tr>

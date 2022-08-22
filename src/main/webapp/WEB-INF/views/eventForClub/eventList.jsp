@@ -30,7 +30,11 @@
         Twoje wydarzenia:<br>
 
         <c:forEach var="event" items="${clubEvents}">
+            <div class="card">
+                <div class="card-header">
             Nazwa: ${event.name} <br>
+                </div>
+                <div class="card-body">
             Opis:  ${event.description}  <br>
             Data: ${event.date} <br>
             Zespoły: <br>
@@ -40,11 +44,10 @@
             </c:forEach><br>
             <a href="/event/edit/${event.id}">Edytuj </a><br>
             <a href="/event/delete/${event.id}">Usuń Wydarzenie</a> <br>
-
+                </div>
+            </div>
         </c:forEach><br>
-        ...............
-        <a href="/event/${clubId}/add">Dodaj nowe wydarzenie</a> <br>
-        <br>
+
 
     </div>
 </div>

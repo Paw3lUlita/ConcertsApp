@@ -38,9 +38,11 @@ public class ClubController {
     }
 
     @GetMapping("/messages/{clubId}")
+
     public String getMessages(@PathVariable long clubId, Model model){
         model.addAttribute("asksForClub", askService.findAsksByClub(clubId));
         return "club/messages";
+
     }
 
     @GetMapping("/add")

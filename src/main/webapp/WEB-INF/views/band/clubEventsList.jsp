@@ -9,14 +9,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Concerts Manager</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Concert Manager</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-Wydarzenia w klubie ${club.name}:<br>
+
+<div class="d-flex" id="wrapper">
+    <jsp:include page="sidebar.jsp"></jsp:include>
+
+    <div class="container-fluid">
+        <h2>Wydarzenia w klubie ${club.name}:</h2><br>
 
 <c:forEach var="event" items="${clubEvents}">
+        <div class="card">
+            <div class="card-header">
     Nazwa: ${event.name} <br>
-
+            </div>
+            <div class="card-body">
     Opis:  ${event.description}  <br>
     Data: ${event.date} <br>
     Zespoły: <br>
@@ -26,7 +42,10 @@ Wydarzenia w klubie ${club.name}:<br>
     </c:forEach><br>
 
     <a href="/band/bandjoin/${event.id}">Poproś o dołączenie</a> <br>
-
+            </div>
+        </div>
 </c:forEach><br>
+    </div>
+</div>
 </body>
 </html>

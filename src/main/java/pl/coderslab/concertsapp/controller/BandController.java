@@ -31,6 +31,23 @@ import java.util.List;
         return "band/bandList";
     }
 
+    @GetMapping("/chooseband/{bandId}")
+
+    public String chooseBand(@PathVariable long bandId, HttpServletResponse response){
+
+        Cookie cookie = new Cookie("bandId", String.valueOf(bandId));
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        /*Band band = bandService.findBandById(bandId);
+        Cookie cookie2 = new Cookie("bandName", band.getName());
+        cookie2.setPath("/");
+        response.addCookie(cookie2);*/
+
+        return "redirect:/band/events/"+bandId;
+    }
+
+
     @GetMapping("/add")
     public String showAddForm(Model model){
         Band band = new Band();
@@ -74,12 +91,16 @@ import java.util.List;
         return "redirect:/band";
     }
 
-    @GetMapping("/events/{bandId}")
-    public String showBandDashboard(@PathVariable long bandId, Model model, HttpServletResponse response){
+    @GetMapping("/search")
+    public String getSearchPage(){
+        return "band/search";
+    }
 
-        Cookie cookie = new Cookie("bandId", String.valueOf(bandId));
-        cookie.setPath("/");
-        response.addCookie(cookie);
+    @GetMapping("/events/{bandId}")
+    public String showBandDashboard(@PathVariable long bandId, Model model){
+
+
+
         List<Event> eventsForBand = eventService.findEventsForBand(bandId);
         model.addAttribute("bandId", bandId);
         model.addAttribute("eventsForBand", eventsForBand);
