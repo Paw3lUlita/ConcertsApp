@@ -58,7 +58,12 @@ import java.util.List;
     }
 
     @PostMapping("/add")
-    public String addBand(Band band, Principal principal){
+    public String addBand(@Valid Band band, BindingResult result, Principal principal){
+
+        if(result.hasErrors()){
+            return "band/add";
+        }
+
         User user = userService.findByUserName(principal.getName());
         band.setUser(user);
         bandService.saveBand(band);
@@ -74,7 +79,10 @@ import java.util.List;
     }
 
     @PostMapping("/edit/{id}")
-    public String editBand(Band band){
+    public String editBand(@Valid Band band, BindingResult result){
+        if(result.hasErrors()){
+            return "band/edit";
+        }
         bandService.saveBand(band);
         return "redirect:/band";
     }

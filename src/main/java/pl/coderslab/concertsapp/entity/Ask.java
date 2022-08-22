@@ -15,7 +15,7 @@ public class Ask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Wiadomość nie może być pusta!")
     private String message;
 
     @OneToOne
