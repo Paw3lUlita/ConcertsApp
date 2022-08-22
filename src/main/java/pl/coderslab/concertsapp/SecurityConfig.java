@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .defaultSuccessUrl("/dashboard")
                 .and().logout().logoutSuccessUrl("/")
+                .deleteCookies("bandId", "bandName", "clubId").invalidateHttpSession(true)
                 .and().exceptionHandling().accessDeniedPage("/403");
 
     }

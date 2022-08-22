@@ -18,7 +18,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @AllArgsConstructor
@@ -34,7 +36,7 @@ public class EventController {
     public String showEventList(@PathVariable long clubId, Model model){
         Club club = clubService.findClubById(clubId);
         List<Event> clubEvents = eventService.findEventsForClub(club);
-        model.addAttribute("asksForClub", askService.findAsksByClub(clubId));
+
         model.addAttribute("clubId", clubId);
         model.addAttribute("clubEvents", clubEvents);
         return "eventForClub/eventList";
@@ -57,19 +59,21 @@ public class EventController {
     }
 
     @GetMapping("/edit/{id}")
+
     public String showEditForm(@PathVariable long id, Model model){
         Event event = eventService.findEventById(id);
-        List<Band> bandsToAdd = new ArrayList<>();
+        /*Set<Band> bandsToAdd = new HashSet<>();
         for (Band b : bandService.findAllBands()){
             for(Band eventBand: event.getBands()){
-                if(b != eventBand){
+                if(!b.equals(eventBand)){
                     bandsToAdd.add(b);
                 }
             }
-        }
-        model.addAttribute("bandsToAdd", bandsToAdd);
+        }*/
+        model.addAttribute("bandsToAdd", bandService.findAllBands());
         model.addAttribute("event", event);
         return "eventForClub/edit";
+
     }
 
     @PostMapping("/edit/{id}")
@@ -116,6 +120,9 @@ public class EventController {
         askService.deleteAskById(askId);
         return "redirect:/event/"+event.getClub().getId();
     }
+
+    //@GetMapping("/event/rejectband/{askId}")
+
 
 
     @ModelAttribute("allBands")

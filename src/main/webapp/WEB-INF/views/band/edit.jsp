@@ -9,15 +9,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Concerts App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Concert Manager</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+<div class="d-flex" id="wrapper">
+    <jsp:include page="sidebar.jsp"></jsp:include>
 <form:form method="post" modelAttribute="band">
+        <div class="form=group">
     Podaj nazwę: <form:input path="name" /><br>
     Podaj bio:  <form:input path="bio"/><br>
     <form:hidden path="id"/>
     <form:hidden path="user.id"/>
-    <input type="submit" value="Edytuj zespół">
+    <input class="btn btn-primary" type="submit" value="Edytuj zespół">
+        </div>
 </form:form>
+</div>
 </body>
 </html>

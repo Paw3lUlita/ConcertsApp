@@ -9,19 +9,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Concerts Manager</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Concert Manager</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-Prośba o dołączenie do wydarzenia ${ask.event.name}<br><br>
+<div class="d-flex" id="wrapper">
+    <jsp:include page="sidebar.jsp"></jsp:include>
 
-Klub: ${ask.event.club.name}
-Data: ${ask.event.date}
-Napisz wiadomość:
+        <div class="container-fluid">
+<h2>Prośba o dołączenie do wydarzenia ${ask.event.name}</h2><br><br>
+
+<h3>Klub: ${ask.event.club.name}<br>
+Data: ${ask.event.date}<br>
+    Napisz wiadomość:</h3><br>
+
 <form:form method="post" modelAttribute="ask">
+    <div class="form-group">
 <form:textarea path="message"/>
 <form:hidden path="band"/>
-<form:hidden path="event"/>
-<input type="submit" value="Wyślij prośbę">
+<form:hidden path="event"/><br>
+<input class="btn btn-primary" type="submit" value="Wyślij prośbę">
+    </div>
 </form:form>
+        </div>
+
+</div>
 </body>
 </html>
