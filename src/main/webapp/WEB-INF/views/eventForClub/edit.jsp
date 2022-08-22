@@ -27,10 +27,10 @@
     Edytuj opis:  <form:input path="description"/><br>
     Edytuj datę: <input type="date" name="date" value="${event.date}"/>
     Dodaj zespoły: <br>
-    <form:hidden path="bands"/>
-    <form:checkboxes path="bands" items="${bandsToAdd}" itemLabel="name" itemValue="id" />
+
+    <form:checkboxes path="bands" items="${allBands}" itemLabel="name" itemValue="id" />
     <form:hidden path="id"/>
-    <form:hidden path="club.id"/>
+    <form:hidden path="club.id"/><form:errors path="*" cssClass="alert-danger" element="div"/>
     <input class="btn btn-primary" type="submit" value="Edytuj wydarzenie">
 </form:form>
 </div>
