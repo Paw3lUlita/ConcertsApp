@@ -28,6 +28,7 @@
     Wybierz swoją rolę: <br>
     <form:checkboxes path="roles"
                      items="${roles}" itemLabel="description" itemValue="id"/><br>
+        <form:errors path="*" cssClass="alert-danger" element="div"/>
     <button class="btn btn-primary"  type="submit" >Zarejestruj</button>
     </div>
 </form:form>
