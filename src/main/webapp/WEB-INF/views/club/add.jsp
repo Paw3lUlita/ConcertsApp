@@ -25,7 +25,7 @@
 <form:form method="post" modelAttribute="club">
     <div class="form-group">
     Podaj miasto: <form:input path="city" /><br>
-    Podaj nazwę:  <form:input path="name"/><br>
+    Podaj nazwę:  <form:input path="name"/><br><form:errors path="*" cssClass="alert-danger" element="div"/>
     <input class="btn btn-primary" type="submit" value="Dodaj klub">
     </div>
 </form:form>

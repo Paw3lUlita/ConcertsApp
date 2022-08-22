@@ -3,6 +3,7 @@ package pl.coderslab.concertsapp.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.concertsapp.entity.Club;
 import pl.coderslab.concertsapp.entity.User;
@@ -12,6 +13,7 @@ import pl.coderslab.concertsapp.service.UserService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -53,7 +55,12 @@ public class ClubController {
     }
 
     @PostMapping("/add")
-    public String addClub(Club club, Principal principal){
+    public String addClub(@Valid Club club, BindingResult result, Principal principal){
+
+        if(result.hasErrors()){
+            return "club/add";
+        }
+
         User user = userService.findByUserName(principal.getName());
         club.setUser(user);
         clubService.saveClub(club);
@@ -68,7 +75,12 @@ public class ClubController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editClub(Club club){
+    public String editClub(@Valid Club club, BindingResult result){
+
+        if(result.hasErrors()){
+            return "club/edit";
+        }
+
         clubService.updateClub(club);
         return "redirect:/club";
     }

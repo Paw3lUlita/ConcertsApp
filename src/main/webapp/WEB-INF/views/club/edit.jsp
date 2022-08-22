@@ -27,7 +27,7 @@
     Podaj miasto: <form:input path="city" /><br>
     Podaj nazwę:  <form:input path="name"/><br>
     <form:hidden path="id"/>
-    <form:hidden path="user.id"/>
+    <form:hidden path="user.id"/><form:errors path="*" cssClass="alert-danger" element="div"/>
     <input class="btn btn-primary" type="submit" value="Edytuj klub">
 </div>
 
