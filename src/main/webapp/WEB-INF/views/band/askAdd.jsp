@@ -32,7 +32,7 @@ Data: ${ask.event.date}<br>
 
 <form:form method="post" modelAttribute="ask">
     <div class="form-group">
-<form:textarea path="message"/>
+<form:textarea path="message"/><form:errors path="message"/>
 <form:hidden path="band"/>
 <form:hidden path="event"/><br>
 <input class="btn btn-primary" type="submit" value="Wyślij prośbę">
