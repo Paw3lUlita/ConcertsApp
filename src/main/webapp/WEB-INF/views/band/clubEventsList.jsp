@@ -28,7 +28,7 @@
         <h2>Wydarzenia w klubie ${club.name}:</h2><br>
 
 <c:forEach var="event" items="${clubEvents}">
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
     Nazwa: ${event.name} <br>
             </div>

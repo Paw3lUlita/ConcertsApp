@@ -135,9 +135,19 @@ import java.util.List;
     }
 
     @GetMapping("/cityevent/{city}")
-    public String showAllEventsInCity(@PathVariable String city, Model model){
+    public String showAllEventsInCity(@PathVariable String city, @CookieValue long bandId, Model model){
         model.addAttribute("city", city);
-        model.addAttribute("cityEvents", eventService.findEventsByClubCity(city));
+        List<Event> eventsToJoin = eventService.findEventsByClubCity(city);
+        Band band = bandService.findBandById(bandId);
+
+        for (Event event : eventsToJoin){
+            for (Band b : event.getBands()){
+                if (b.equals(band)){
+                    eventsToJoin.remove(event);
+                }
+            }
+        }
+        model.addAttribute("cityEvents", eventsToJoin);
         return "band/cityEventsList";
     }
 
@@ -148,10 +158,22 @@ import java.util.List;
     }
 
     @GetMapping("/clubevent/{clubId}")
-    public String showAlleventsInClub(@PathVariable long clubId, Model model){
+    public String showAlleventsInClub(@PathVariable long clubId, @CookieValue long bandId, Model model){
         Club club = clubService.findClubById(clubId);
         model.addAttribute("club", club);
-        model.addAttribute("clubEvents", eventService.findEventsForClub(club));
+
+        List<Event> eventsToJoin = eventService.findEventsForClub(club);
+        Band band = bandService.findBandById(bandId);
+
+        for (Event event : eventsToJoin){
+            for (Band b : event.getBands()){
+                if (b.equals(band)){
+                    eventsToJoin.remove(event);
+                }
+            }
+        }
+
+        model.addAttribute("clubEvents", eventsToJoin);
         return "band/clubEventsList";
     }
 
@@ -161,6 +183,12 @@ import java.util.List;
         Ask ask = new Ask();
         Band band = bandService.findBandById(Long.parseLong(bandId));
         Event event = eventService.findEventById(eventId);
+
+         if(event.getBands().size()==5){
+             String warningMessage = "W evencie uczestniczy już maksymalna liczba zespołów. \n" +
+                     "Wciąż możesz wysłać wiadomość, zeby organizator wziął cię pod uwagę podczas kolejnych eventów";
+             model.addAttribute("warningMessage", warningMessage);
+         }
         ask.setBand(band);
         ask.setEvent(event);
         model.addAttribute("ask", ask);

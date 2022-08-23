@@ -125,14 +125,28 @@ public class EventController {
                                  @PathVariable long bandId,
                                  @PathVariable long askId){
         Event event = eventService.findEventById(eventId);
+
+        if(event.getBands().size() == 5){
+            return "eventForClub/addAlert";
+        }
+
         Band band = bandService.findBandById(bandId);
         event.getBands().add(band);
         eventService.saveEvent(event);
         askService.deleteAskById(askId);
-        return "redirect:/event/"+event.getClub().getId();
+        return "redirect:/club/messages/"+event.getClub().getId();
     }
 
-    //@GetMapping("/event/rejectband/{askId}")
+    @GetMapping("/rejectband/{askId}")
+    public String rejectAsk(@PathVariable long askId){
+
+        long clubId = askService.findAskbyId(askId).getEvent().getClub().getId();
+
+        askService.deleteAskById(askId);
+
+
+        return "redirect:/club/messages/"+clubId;
+    }
 
 
 

@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pawel
@@ -24,6 +25,7 @@
     <jsp:include page="sidebar.jsp"></jsp:include>
 
         <div class="container-fluid">
+            <c:out value="${warningMessage}" default=""/>
 <h2>Prośba o dołączenie do wydarzenia ${ask.event.name}</h2><br><br>
 
 <h3>Klub: ${ask.event.club.name}<br>

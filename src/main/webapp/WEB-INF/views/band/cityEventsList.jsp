@@ -28,7 +28,7 @@
         <h2>Wydarzenia w mieście ${city}:</h2><br>
 
         <c:forEach var="event" items="${cityEvents}">
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
              Nazwa: ${event.name} <br>
             </div>

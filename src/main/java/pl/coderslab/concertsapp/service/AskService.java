@@ -11,6 +11,8 @@ public interface AskService {
 
     void saveAsk(Ask ask);
 
-    void deleteAskById(long AskId);
+    void deleteAskById(long askId);
+
+    Ask findAskbyId(long askId);
 
 }

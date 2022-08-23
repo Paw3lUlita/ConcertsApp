@@ -26,7 +26,12 @@ public class AskServiceImpl implements AskService {
     }
 
     @Override
-    public void deleteAskById(long AskId) {
-        askRepository.deleteById(AskId);
+    public void deleteAskById(long askId) {
+        askRepository.deleteById(askId);
+    }
+
+    @Override
+    public Ask findAskbyId(long askId) {
+        return askRepository.findById(askId).get();
     }
 }
