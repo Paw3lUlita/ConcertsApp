@@ -10,9 +10,11 @@ import pl.coderslab.concertsapp.entity.*;
 import pl.coderslab.concertsapp.service.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -102,7 +104,13 @@ import java.util.List;
     }
 
     @GetMapping("/search")
-    public String getSearchPage(){
+    public String getSearchPage(HttpServletRequest request){
+
+        boolean cookiePresent = Arrays.asList( request.getCookies() ).stream().anyMatch(cookie -> cookie.getName().equals("bandId"));
+
+        if(!cookiePresent){
+            return "band/chooseBandAlert";
+        }
         return "band/search";
     }
 
@@ -116,6 +124,11 @@ import java.util.List;
         model.addAttribute("eventsForBand", eventsForBand);
         return "band/eventList";
 
+    }
+
+    @GetMapping("/events/err")
+    public String getChooseAlert(){
+        return "band/chooseBandAlert";
     }
 
     @GetMapping("/{bandId}/cancel/{eventId}")

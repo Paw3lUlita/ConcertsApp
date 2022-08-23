@@ -47,6 +47,11 @@ public class ClubController {
 
     }
 
+    @GetMapping("/messages/err")
+    public String getChooseClubAlert(){
+        return "club/chooseClubAlert";
+    }
+
     @GetMapping("/add")
     public String showAddForm(Model model){
         Club club = new Club();

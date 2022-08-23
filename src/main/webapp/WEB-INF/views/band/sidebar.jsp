@@ -13,7 +13,7 @@
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/band">Przełącz zespół</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/band/add">Dodaj zespół</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/band/search">Szukaj wydarzeń</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/band/events/${cookie.bandId.value}">Twoje wydarzenia</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/band/events/<c:out value="${cookie.bandId.value}" default="err"/>">Twoje wydarzenia</a>
     <%--<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/messages/${cookie.clubId.value}">Wiadomości</a>--%>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard">Strona główna</a>
 
