@@ -13,6 +13,8 @@ import pl.coderslab.concertsapp.repository.EventRepository;
 import pl.coderslab.concertsapp.service.RoleService;
 import pl.coderslab.concertsapp.service.UserService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -52,7 +54,18 @@ public class HomePageController {
     }
 
     @GetMapping("/dashboard")
-    public String showDashboard(){
+    public String showDashboard(HttpServletResponse response){
+
+        Cookie cookie = new Cookie("bandId", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        Cookie cookie2 = new Cookie("clubId", null);
+        cookie2.setPath("/");
+        cookie2.setMaxAge(0);
+        response.addCookie(cookie2);
+
         return "homepage/dashboard";
     }
 

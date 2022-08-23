@@ -108,7 +108,7 @@ import java.util.List;
 
         boolean cookiePresent = Arrays.asList( request.getCookies() ).stream().anyMatch(cookie -> cookie.getName().equals("bandId"));
 
-        if(cookiePresent == false){
+        if(!cookiePresent){
             return "band/chooseBandAlert";
         }
         return "band/search";
