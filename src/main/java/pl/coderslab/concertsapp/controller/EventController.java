@@ -44,6 +44,18 @@ public class EventController {
         return "eventForClub/eventList";
     }
 
+
+    @GetMapping("/err/add")
+    public String getChooseClubAlert(){
+        return "club/chooseClubAlert";
+    }
+
+    @GetMapping("/err")
+    public String getChooseClubAlert2(){
+        return "club/chooseClubAlert";
+    }
+
+
     @GetMapping("/{clubId}/add")
     public String showAddForm(@PathVariable long clubId, Model model){
         Event event = new Event();

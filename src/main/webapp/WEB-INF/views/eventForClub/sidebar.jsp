@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pawel
@@ -11,9 +12,9 @@
   <div class="list-group list-group-flush">
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club">Przełącz klub</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/add">Dodaj klub</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/${cookie.clubId.value}/add">Dodaj wydarzenie</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/${cookie.clubId.value}">Lista Wydarzeń</a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/messages/${cookie.clubId.value}">Wiadomości</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/<c:out value="${cookie.clubId.value}" default="err"/>/add">Dodaj wydarzenie</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/event/<c:out value="${cookie.clubId.value}" default="err"/>">Lista Wydarzeń</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/club/messages/<c:out value="${cookie.clubId.value}" default="err"/>">Wiadomości</a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard">Strona główna</a>
 
   </div>
