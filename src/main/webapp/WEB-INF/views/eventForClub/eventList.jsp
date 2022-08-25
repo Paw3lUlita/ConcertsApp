@@ -39,7 +39,7 @@
             Data: ${event.date} <br>
             Zespoły: <br>
             <c:forEach var="band" items="${event.bands}">
-                ${band.name} <a href="/event/banddetails/${band.id}">Szczegóły</a>
+                ${band.name} <a href="/band/banddetails/${band.id}">Szczegóły</a>
                 <a href="/event/${event.id}/bandremove/${band.id}">Usuń z wydarzenia</a> <br>
             </c:forEach><br>
             <a href="/event/edit/${event.id}">Edytuj </a><br>

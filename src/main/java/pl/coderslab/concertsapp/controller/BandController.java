@@ -226,6 +226,13 @@ import java.util.List;
         return "redirect:/band/events/"+ask.getBand().getId();
     }
 
+    @GetMapping("/banddetails/{bandId}")
+        public String showBandDetailsPage(@PathVariable long bandId, Model model){
+        Band band = bandService.findBandById(bandId);
+        model.addAttribute("band", band);
+        return "band/details";
+        }
+
     @ModelAttribute("userBands")
     public List<Band> getUserBands(Principal principal){
         User user = userService.findByUserName(principal.getName());
