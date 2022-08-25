@@ -30,7 +30,9 @@
 <c:forEach var="event" items="${eventsForBand}">
             <div class="card">
                 <div class="card-header">
-   Nazwa: ${event.name} <br>
+                     Nazwa: ${event.name} <br>
+                     Klub: ${event.club.name} <br>
+                     Miasto ${event.club.city}
                 </div>
                 <div class="card-body">
     Opis:  ${event.description}  <br>
