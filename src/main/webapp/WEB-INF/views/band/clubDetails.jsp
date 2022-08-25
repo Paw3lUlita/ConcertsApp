@@ -1,9 +1,8 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: pawel
-  Date: 14.08.2022
-  Time: 14:12
+  Date: 25.08.2022
+  Time: 18:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,21 +19,22 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+
 <div class="d-flex" id="wrapper">
     <jsp:include page="sidebar.jsp"></jsp:include>
-<form:form method="post" modelAttribute="band">
-        <div class="form=group">
-            Edytuj nazwę:             <form:input path="name" /><br>
-            Edytuj miasto:            <form:input path="city"/><br>
-            Edytuj email:             <form:input path="email"/><br>
-            Edytuj numer telefonu:    <form:input path="phoneNumber"/><br>
-            Edytuj bio:               <form:textarea path="bio"/><br>
-    <form:hidden path="id"/>
-    <form:hidden path="user.id"/>
-            <form:errors path="*" cssClass="alert-danger" element="div"/>
-    <input class="btn btn-primary" type="submit" value="Edytuj zespół">
+
+    <div class="container-fluid">
+        <h2>Klub ${club.name}</h2><br>
+
+        <div class="card shadow">
+            <h5>Miasto: ${club.city}</h5><br>
+            <h5>Adres: ${club.address} </h5><br>
+            <h5>Kontakt: </h5><br>
+            <span>Nr telefonu: ${club.phoneNumber}</span>
+            <span>Adres email: ${club.email}</span>
         </div>
-</form:form>
+
+    </div>
 </div>
 </body>
 </html>

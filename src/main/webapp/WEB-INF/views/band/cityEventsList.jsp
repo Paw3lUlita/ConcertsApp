@@ -30,7 +30,8 @@
         <c:forEach var="event" items="${cityEvents}">
         <div class="card shadow">
             <div class="card-header">
-             Nazwa: ${event.name} <br>
+                Nazwa: ${event.name} <br>
+                Klub: ${event.club.name}  <a href="/club/clubdetails/${event.club.id}" >Szczegóły klubu</a>
             </div>
             <div class="card-body">
              Klub: ${event.club.name} <br>

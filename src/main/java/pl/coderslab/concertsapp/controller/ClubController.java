@@ -104,6 +104,13 @@ public class ClubController {
         return "redirect:/club";
     }
 
+    @GetMapping("/clubdetails/{clubId}" )
+    public String getClubDetails(@PathVariable long clubId, Model model){
+        Club club = clubService.findClubById(clubId);
+        model.addAttribute("club", club);
+        return "band/clubDetails";
+    }
+
     @ModelAttribute("userClubs")
     public List<Club> getUserClubs(Principal principal){
         User user = userService.findByUserName(principal.getName());
