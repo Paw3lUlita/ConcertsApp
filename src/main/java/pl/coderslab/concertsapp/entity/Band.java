@@ -21,6 +21,10 @@ public class Band {
     @Size(min = 2, message = "Nazwa zespółu musi zawierać conajmniej dwa znaki!")
     private String name;
 
+    @NotEmpty(message = "Musisz podać miasto!")
+    @Size(min=3, message = "Nazwa miasta musi mieć co najmniej trzy znaki!")
+    private String city;
+
     @NotEmpty(message = "Bio nie może być puste!")
     private String bio;
 
