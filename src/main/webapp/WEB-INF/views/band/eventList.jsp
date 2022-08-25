@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-header">
                      Nazwa: ${event.name} <br>
-                     Klub: ${event.club.name} <br>
+                     Klub: ${event.club.name}  <a href="/club/clubdetails/${event.club.id}">Szczegóły</a> <br>
                      Miasto ${event.club.city}
                 </div>
                 <div class="card-body">
