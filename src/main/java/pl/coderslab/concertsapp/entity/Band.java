@@ -3,6 +3,8 @@ package pl.coderslab.concertsapp.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -21,6 +23,13 @@ public class Band {
 
     @NotEmpty(message = "Bio nie może być puste!")
     private String bio;
+
+    @NotEmpty(message = "Musisz podać numer telefonu!")
+    private int phoneNumber;
+
+    @Email(message = "Niepoprawny adres email!")
+    @NotEmpty(message = "Musisz podać adres email!")
+    private String email;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
