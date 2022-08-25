@@ -24,8 +24,12 @@
     <jsp:include page="sidebar.jsp"></jsp:include>
 <form:form method="post" modelAttribute="band">
         <div class="form-group">
-    Podaj nazwę: <form:input path="name" /><br>
-    Podaj bio:  <form:input path="bio"/><br><form:errors path="*" cssClass="alert-danger" element="div"/>
+    Podaj nazwę:             <form:input path="name" /><br>
+    Podaj miasto:            <form:input path="city"/><br>
+    Podaj email:             <form:input path="email"/><br>
+    Podaj numer telefonu:    <form:input path="phoneNumber"/><br>
+    Podaj bio:               <form:textarea path="bio"/><br>
+            <form:errors path="*" cssClass="alert-danger" element="div"/>
     <input class="btn btn-primary" type="submit" value="Dodaj zespół">
         </div>
 </form:form>
