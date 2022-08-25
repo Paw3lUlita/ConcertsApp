@@ -3,10 +3,7 @@ package pl.coderslab.concertsapp.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "band")
@@ -29,7 +26,8 @@ public class Band {
     private String bio;
 
     @NotEmpty(message = "Musisz podać numer telefonu!")
-    private int phoneNumber;
+    @Pattern(regexp = "[0-9]{9}", message = "Nieprawidłowy numer telefonu!")
+    private String phoneNumber;
 
     @Email(message = "Niepoprawny adres email!")
     @NotEmpty(message = "Musisz podać adres email!")
