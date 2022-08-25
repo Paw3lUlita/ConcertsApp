@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -150,15 +151,17 @@ import java.util.List;
     @GetMapping("/cityevent/{city}")
     public String showAllEventsInCity(@PathVariable String city, @CookieValue long bandId, Model model){
         model.addAttribute("city", city);
-        List<Event> eventsToJoin = eventService.findEventsByClubCity(city);
+        List<Event> allEventsForCity = eventService.findEventsByClubCity(city);
         Band band = bandService.findBandById(bandId);
 
-        for (Event event : eventsToJoin){
-            for (Band b : event.getBands()){
-                if (b.equals(band)){
-                    eventsToJoin.remove(event);
-                }
+        List<Event> eventsToJoin = new ArrayList<>();
+
+        for (Event event : allEventsForCity){
+
+            if(!event.getBands().contains(band)){
+                eventsToJoin.add(event);
             }
+
         }
         model.addAttribute("cityEvents", eventsToJoin);
         return "band/cityEventsList";
@@ -175,16 +178,20 @@ import java.util.List;
         Club club = clubService.findClubById(clubId);
         model.addAttribute("club", club);
 
-        List<Event> eventsToJoin = eventService.findEventsForClub(club);
+        List<Event> allEventsForClub = eventService.findEventsForClub(club);
         Band band = bandService.findBandById(bandId);
 
-        for (Event event : eventsToJoin){
-            for (Band b : event.getBands()){
-                if (b.equals(band)){
-                    eventsToJoin.remove(event);
-                }
+        List<Event> eventsToJoin = new ArrayList<>();
+
+        for (Event event : allEventsForClub){
+
+            if(!event.getBands().contains(band)){
+                eventsToJoin.add(event);
             }
+
         }
+
+
 
         model.addAttribute("clubEvents", eventsToJoin);
         return "band/clubEventsList";
