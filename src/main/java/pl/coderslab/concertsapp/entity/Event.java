@@ -20,8 +20,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty(message = "Nazwa klubu nie może być pusta!")
-    @Size(min=10, message = "Nazwa klubu musi mieć co najmniej dziesięc znaków!")
+    @NotEmpty(message = "Nazwa wydarzenia nie może być pusta!")
     private String name;
 
     @NotEmpty(message = "Opis nie może być pusty!")

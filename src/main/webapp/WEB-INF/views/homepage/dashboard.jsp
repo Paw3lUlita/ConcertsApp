@@ -23,7 +23,7 @@
 <body>
 
 <sec:authorize access="isAuthenticated()">
-    <p class="p-2">Zalogowany jako: <sec:authentication property="principal.username"/></p>
+    <h2>Zalogowany jako: <sec:authentication property="principal.username"/></h2>
 
 </sec:authorize><br><br>
 
