@@ -53,7 +53,7 @@ public class BandServiceImpl implements BandService {
 
     @Override
     @Transactional
-    public void deleteBandByid(Long id) {
+    public void deleteBandById(Long id) {
         bandRepository.deleteById(id);
     }
 }

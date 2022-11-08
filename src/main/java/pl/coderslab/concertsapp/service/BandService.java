@@ -18,6 +18,6 @@ public interface BandService {
 
     List<Band> findAllBands();
 
-    void deleteBandByid(Long id);
+    void deleteBandById(Long id);
 
 }

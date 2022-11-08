@@ -93,8 +93,8 @@ import java.util.List;
     }
 
     @GetMapping("/delete")
-    public String deleteClub(@RequestParam long id, Model model){
-        bandService.deleteBandByid(id);
+    public String deleteBand(@RequestParam long id, Model model){
+        bandService.deleteBandById(id);
 
         return "redirect:/band";
     }

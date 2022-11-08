@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.concertsapp.entity.Role;
 import pl.coderslab.concertsapp.repository.RoleRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
+    @Transactional
     public List<Role> findAllRoles() {
         return roleRepository.findAll();
     }
