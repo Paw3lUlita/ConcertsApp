@@ -44,11 +44,6 @@ import java.util.List;
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        /*Band band = bandService.findBandById(bandId);
-        Cookie cookie2 = new Cookie("bandName", band.getName());
-        cookie2.setPath("/");
-        response.addCookie(cookie2);*/
-
         return "redirect:/band/events/"+bandId;
     }
 

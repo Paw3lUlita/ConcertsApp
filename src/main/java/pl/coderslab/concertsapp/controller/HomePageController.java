@@ -26,7 +26,7 @@ public class HomePageController {
 
     private final RoleService roleService;
     private final UserService userService;
-    private final EventRepository eventRepository;
+
 
 
 
